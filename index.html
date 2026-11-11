@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shashank C | DevOps Engineer</title>
+  <meta name="description" content="Shashank C is a DevOps engineer in Bengaluru building secure, automated infrastructure on AWS with Kubernetes, Terraform, and GitOps.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top">Shashank C</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-cta" href="resume.pdf" download>Resume</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+	  <img class="hero-photo" src="photo.png" alt="Shashank C" width="112" height="112">
+          <p class="hero-role">DevOps engineer in Bengaluru</p>
+          <h1>Infrastructure that deploys itself, scales itself, and tells you when it breaks.</h1>
+          <p class="lead">I build AWS platforms with Terraform and Kubernetes, ship them through secure CI/CD and GitOps pipelines, and monitor them with Prometheus and Grafana.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">See my projects</a>
+            <a class="btn btn-ghost" href="resume.pdf" download>Download resume</a>
+          </div>
+        </div>
+
+        <figure class="pipeline is-running" aria-label="My deployment pipeline, from commit to monitoring">
+          <figcaption class="pipeline-title">What happens after I push a commit</figcaption>
+          <ol class="stages">
+            <li class="stage" style="--i:0">
+              <span class="stage-dot" aria-hidden="true"></span>
+              <span class="stage-name">Commit</span>
+              <span class="stage-tools">GitHub webhook triggers the build</span>
+            </li>
+            <li class="stage" style="--i:1">
+              <span class="stage-dot" aria-hidden="true"></span>
+              <span class="stage-name">Build and scan</span>
+              <span class="stage-tools">Jenkins, SonarQube, Trivy</span>
+            </li>
+            <li class="stage" style="--i:2">
+              <span class="stage-dot" aria-hidden="true"></span>
+              <span class="stage-name">Sync</span>
+              <span class="stage-tools">ArgoCD matches the cluster to Git</span>
+            </li>
+            <li class="stage" style="--i:3">
+              <span class="stage-dot" aria-hidden="true"></span>
+              <span class="stage-name">Run</span>
+              <span class="stage-tools">Amazon EKS with autoscaling</span>
+            </li>
+            <li class="stage" style="--i:4">
+              <span class="stage-dot" aria-hidden="true"></span>
+              <span class="stage-name">Observe</span>
+              <span class="stage-tools">Prometheus, Grafana, Alertmanager</span>
+            </li>
+          </ol>
+          <div class="pipeline-footer">
+            <p class="pipeline-status">Deployed. Dashboards and alerts are live.</p>
+            <button class="pipeline-replay" type="button">Run again</button>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Projects</h2>
+          <p class="section-intro">Three connected builds: shipping the code, provisioning the platform it runs on, and watching it once it's live.</p>
+        </div>
+
+        <article class="project">
+          <div class="project-meta">
+            <h3>CI/CD and GitOps pipeline for 3-tier microservices</h3>
+            <p class="project-summary">An automated path from commit to running cluster for a MERN microservices app, with security checks built in.</p>
+            <ol class="flow" aria-label="Pipeline flow">
+              <li><span>GitHub</span></li>
+              <li><span>Jenkins</span></li>
+              <li><span>SonarQube + Trivy</span></li>
+              <li><span>ArgoCD</span></li>
+              <li><span>EKS</span></li>
+            </ol>
+            <p class="project-links"><a href="https://github.com/shashankc20mca/CI-CD-GitOps-3-Tier-Microservices-Platform" target="_blank" rel="noopener">View on GitHub</a></p>
+          </div>
+          <div class="project-body">
+            <ul class="project-points">
+              <li>Wrote multi-stage Dockerfiles for each MERN service to keep images small and reduce attack surface, with Docker Compose for local and production parity.</li>
+              <li>Built Jenkins pipelines, triggered by GitHub webhooks, that run SonarQube code analysis and Trivy image scans before anything ships.</li>
+              <li>Deployed with ArgoCD so the cluster continuously syncs with Git and flags drift.</li>
+              <li>Kept credentials out of code using Kubernetes Secrets, ConfigMaps, and imagePullSecrets for the private registry.</li>
+              <li>Routed incoming traffic through Envoy Gateway using Kubernetes Gateway API resources.</li>
+            </ul>
+            <ul class="tech" aria-label="Technologies">
+              <li>AWS EKS</li><li>Kubernetes</li><li>Jenkins</li><li>ArgoCD</li><li>Docker</li><li>SonarQube</li><li>Trivy</li><li>Gateway API</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-meta">
+            <h3>Production-style EKS platform with Terraform</h3>
+            <p class="project-summary">A custom EKS cluster built from scratch as code, with private networking, least-privilege access, and autoscaling.</p>
+            <ol class="flow" aria-label="Platform layers">
+              <li><span>VPC</span></li>
+              <li><span>IAM</span></li>
+              <li><span>EKS</span></li>
+              <li><span>EBS storage</span></li>
+              <li><span>Autoscaling</span></li>
+            </ol>
+            <p class="project-links"><a href="https://github.com/shashankc20mca/Enterprise-GitOps-Platform-Automated-EKS-Infrastructure-and-3-Tier-Microservices" target="_blank" rel="noopener">View on GitHub</a></p>
+          </div>
+          <div class="project-body">
+            <ul class="project-points">
+              <li>Provisioned the full environment with Terraform (VPC, public and private subnets, NAT gateways, IAM), reproducible with a single <code>terraform apply</code>.</li>
+              <li>Kept worker nodes in private subnets with no public IPs, with a bastion host as the only SSH entry point.</li>
+              <li>Scoped IAM roles for the control plane and nodes using least privilege and OIDC.</li>
+              <li>Enabled persistent storage with the EBS CSI driver, so stateful data survives pod and node failures.</li>
+              <li>Set up two-layer autoscaling (HPA and Cluster Autoscaler) and canary releases with traffic splitting for low-risk updates.</li>
+            </ul>
+            <ul class="tech" aria-label="Technologies">
+              <li>Terraform</li><li>AWS VPC</li><li>EC2</li><li>IAM</li><li>EKS</li><li>EBS</li><li>Helm</li><li>Bash</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-meta">
+            <h3>EKS monitoring and alerting</h3>
+            <p class="project-summary">An out-of-cluster monitoring stack that tracks node health, probes live endpoints, and emails the team when something fails.</p>
+            <ol class="flow" aria-label="Monitoring flow">
+              <li><span>Exporters</span></li>
+              <li><span>Prometheus</span></li>
+              <li><span>Alertmanager</span></li>
+              <li><span>Email</span></li>
+            </ol>
+            <p class="project-links"><a href="https://github.com/shashankc20mca/Enterprise-EKS-Monitoring-with-Prometheus-Grafana-Node-Exporter-Blackbox-Exporter-and-Alertmanage" target="_blank" rel="noopener">View on GitHub</a></p>
+          </div>
+          <div class="project-body">
+            <ul class="project-points">
+              <li>Ran Prometheus, Grafana, and Alertmanager outside the cluster so monitoring keeps working when the cluster has problems, with network rules to scrape private nodes.</li>
+              <li>Deployed Node Exporter as a DaemonSet and used Prometheus service discovery to collect metrics from every worker node.</li>
+              <li>Wrote PromQL alert rules for node health and resource exhaustion, tuned to avoid false alarms.</li>
+              <li>Used Blackbox Exporter to probe Jenkins and the public app endpoint, with critical alerts sent by email.</li>
+              <li>Built Grafana dashboards for cluster health and capacity planning.</li>
+            </ul>
+            <ul class="tech" aria-label="Technologies">
+              <li>Prometheus</li><li>Grafana</li><li>Alertmanager</li><li>Node Exporter</li><li>Blackbox Exporter</li><li>PromQL</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section" id="experience">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Experience</h2>
+        </div>
+        <ol class="timeline">
+          <li class="role">
+            <p class="role-dates">Nov 2025 – Present</p>
+            <div>
+              <h3>Independent DevOps projects</h3>
+              <p class="role-org">Full-time, self-directed</p>
+              <ul>
+                <li>Built three AWS projects end to end: a secure CI/CD and GitOps pipeline, a Terraform-provisioned EKS platform, and an out-of-cluster monitoring stack.</li>
+                <li>Practiced production habits: least-privilege IAM, private networking, infrastructure as code, and alerting on real failure modes.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="role">
+            <p class="role-dates">Nov 2024 – Nov 2025</p>
+            <div>
+              <h3>Junior Associate, Operations</h3>
+              <p class="role-org">Unifycx, Bengaluru</p>
+              <ul>
+                <li>Troubleshot Linux hosting servers over SSH, using log analysis to resolve 403, 404, and 500 errors and WordPress theme and plugin conflicts.</li>
+                <li>Diagnosed DNS, FTP, and hosting misconfigurations to restore correct routing and site availability.</li>
+                <li>Managed FTP/SFTP accounts and access controls for secure file transfers across shared and dedicated hosting.</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section" id="skills">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Skills</h2>
+        </div>
+        <dl class="skills-grid">
+          <div><dt>Cloud</dt><dd>AWS: VPC, EC2, IAM, EKS, EBS</dd></div>
+          <div><dt>Containers and orchestration</dt><dd>Docker, Kubernetes, Helm, Gateway API</dd></div>
+          <div><dt>Infrastructure as code</dt><dd>Terraform, Ansible</dd></div>
+          <div><dt>CI/CD and GitOps</dt><dd>Jenkins, ArgoCD, GitHub, SonarQube, Trivy</dd></div>
+          <div><dt>Monitoring</dt><dd>Prometheus, Grafana, Alertmanager</dd></div>
+          <div><dt>Systems and scripting</dt><dd>Linux, Bash, Python</dd></div>
+        </dl>
+
+        <!-- Add this block once you pass the exam:
+        <h3 class="sub-head">Certifications</h3>
+        <p>AWS Certified Solutions Architect – Associate (SAA-C03)</p>
+        -->
+
+        <h3 class="sub-head">Education</h3>
+        <p class="edu">Master of Computer Applications, PES University, Bengaluru (2024)</p>
+      </div>
+    </section>
+
+        <!-- CONTACT -->
+    <section class="section contact" id="contact">
+      <div class="wrap contact-grid">
+        <div class="contact-info">
+          <h2>Let's work together</h2>
+          <p class="contact-intro">Hiring for a DevOps or cloud role, or have a task you'd like help with? Share a few details and I'll get back to you.</p>
+          <div class="contact-row">
+            <a class="email" href="mailto:shashank20mca@gmail.com">shashank20mca@gmail.com</a>
+            <button class="copy-btn" type="button" data-email="shashank20mca@gmail.com">Copy email</button>
+          </div>
+          <p class="contact-links">
+            <a href="https://www.linkedin.com/in/shashankc-cloud/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/shashankc20mca" target="_blank" rel="noopener">GitHub</a>
+          </p>
+        </div>
+
+        <div class="enquiry">
+          <form id="enquiry-form" class="enquiry-form">
+            <!-- Paste your Web3Forms access key below -->
+            <input type="hidden" name="access_key" value="31e22818-cf12-4011-9d21-7e8f599b07fe">
+            <input type="hidden" name="subject" value="New enquiry from your portfolio">
+            <input type="hidden" name="from_name" value="Portfolio contact form">
+            <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off">
+
+            <div class="field">
+              <label for="name">Full name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="phone">Contact number</label>
+                <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel"
+                       pattern="[+]?[0-9 ]{10,16}"
+                       title="Enter a valid phone number, for example +91 98765 43210" required>
+                <p class="field-hint">Add country code if outside India</p>
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="message">Purpose of contact</label>
+              <textarea id="message" name="message" rows="3" maxlength="400" required
+                        placeholder="A role you're hiring for, or a task you'd like help with"></textarea>
+              <p class="field-hint"><span id="char-count">0</span>/400 characters</p>
+            </div>
+
+            <button class="btn btn-primary submit-btn" type="submit">Send enquiry</button>
+            <p class="form-error" id="form-error" role="alert" hidden></p>
+          </form>
+
+          <div class="form-success" id="form-success" tabindex="-1" hidden>
+            <h3>Your enquiry has been submitted</h3>
+            <p id="success-text">Thank you for reaching out. I'll review your message and get back to you within 1–2 business days.</p>
+            <button class="copy-btn" id="send-another" type="button">Send another enquiry</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">© <span id="year"></span> Shashank C</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
